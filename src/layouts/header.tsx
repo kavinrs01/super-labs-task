@@ -1,4 +1,4 @@
-import { AutoComplete, Input, Popover } from "antd";
+import { AutoComplete, Badge, Input, Popover } from "antd";
 import { useMemo, useState } from "react";
 import "./styles.less";
 
@@ -92,8 +92,9 @@ const AppHeader: React.FC = () => {
 
   return (
     <div className="w-full flex flex-col">
-      <div className="w-full h-[50px] bg-[#a29ddd] flex flex-row items-center gap-4 justify-between">
-        <div className="text-white px-10">
+      <div className="w-full h-[50px] bg-[#a29ddd] flex flex-row items-center gap-4 justify-between relative">
+        <div></div>
+        <div className="text-white px-10 absolute">
           <p>
             <span>
               <b>Today Only: </b>50% off select beauty. <b>SHOP NOW ▸</b>
@@ -133,7 +134,7 @@ const AppHeader: React.FC = () => {
         </AutoComplete>
         <div className="flex flex-row gap-5 items-center h-[40px] cursor-pointer">
           <ShopOutlined className="text-xl" />
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-2 whitespace-nowrap">
             <span className="h-2 font-medium mb-0.5 text-[14px]">
               Stores & Services
             </span>
@@ -142,15 +143,21 @@ const AppHeader: React.FC = () => {
         </div>
         <div className="flex flex-row gap-2 items-center h-[40px]">
           <UserOutlined className="text-xl" />
-          <div className="flex flex-col gap-2 cursor-pointer">
+          <div className="flex flex-col gap-2 cursor-pointer whitespace-nowrap">
             <span className="h-2 font-medium mb-0.5 text-[14px]">Sign In</span>
-            <span className="text-[10px]">for free shipping 🚚</span>
+            <span className="text-[10px] whitespace-nowrap">
+              for free shipping 🚚
+            </span>
           </div>
         </div>
-        <HeartOutlined className="text-2xl cursor-pointer" />
-        <ShoppingCartOutlined className="text-2xl cursor-pointer" />
+        <Badge count={5}>
+          <HeartOutlined className="text-2xl cursor-pointer" />
+        </Badge>
+        <Badge count={1}>
+          <ShoppingCartOutlined className="text-2xl cursor-pointer" />
+        </Badge>
       </div>
-      <div className="w-[100dvw]  h-[50px] bg-[#000] flex flex-row gap-5 text-white justify-center items-center overflow-x-auto overflow-y-hidden whitespace-nowrap">
+      <div className="w-[100dvw]  h-[50px] px-5 bg-[#000] flex flex-row gap-5 text-white  items-center overflow-x-auto overflow-y-hidden whitespace-nowrap no-scrollbar">
         {menuList.map((item) => (
           <React.Fragment key={item}>
             <Popover
