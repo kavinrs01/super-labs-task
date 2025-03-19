@@ -162,10 +162,10 @@ const AppHeader: React.FC = () => {
           <React.Fragment key={item}>
             <Popover
               content={
-                <div className="w-[calc(100dvw-20px)] flex flex-row gap-32 p-5 justify-between">
-                  <div className="flex flex-col gap-5">
+                <div className="w-[calc(100dvw-20px)] flex flex-row gap-20 p-5 justify-between">
+                  <div className="flex flex-col gap-5 ">
                     {innerMenuList1.map((item) => (
-                      <div>
+                      <div className="flex flex-row flex-nowrap items-center gap-1">
                         <span
                           className="relative inline-block cursor-pointer 
    after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 
@@ -180,7 +180,7 @@ const AppHeader: React.FC = () => {
                   </div>
                   <div className="flex flex-col gap-5">
                     {innerMenuList2.map((item) => (
-                      <div>
+                      <div className="flex flex-row flex-nowrap items-center gap-1">
                         <span
                           className="relative inline-block cursor-pointer 
    after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 

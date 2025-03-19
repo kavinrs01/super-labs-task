@@ -8,10 +8,9 @@ const AppLayout: React.FC = () => {
       <Header className=" bg-white  min-h-[200px] p-0 ">
         <AppHeader />
       </Header>
-      <Content className={" bg-white"}>
+      <Content className={"h-dvh bg-white"}>
         <Outlet />
       </Content>
-      {/* <Footer>Footer</Footer> */}
     </Layout>
   );
 };

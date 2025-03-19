@@ -1,27 +1,60 @@
 import { Button, Rate } from "antd";
 import "./styles.less";
 
-const ProductCard: React.FC = () => {
+const ProductCard: React.FC<{
+  isNew?: boolean;
+  isLimited?: boolean;
+  isOnlineOnly?: boolean;
+  img: string;
+  brand: string;
+  name: string;
+  price: number;
+  rating: number;
+  ratingCount: number;
+  trendingCount?: number;
+}> = ({
+  isNew,
+  isLimited,
+  isOnlineOnly,
+  img,
+  brand,
+  name,
+  price,
+  rating,
+  ratingCount,
+  trendingCount,
+}) => {
   return (
-    <div className=" cursor-pointer relative w-[200px] h-[315px] shadow-[0px_0px_6px_rgba(0,0,0,0.2)] rounded-lg p-5 m-3 bg-white transition-transform duration-300 ease-in-out hover:-translate-y-2 flex flex-col gap-1">
-      <div className="absolute top-0 right-0 z-40  bg-black text-white text-base font-semibold p-6 clip-triangle rounded-tr-lg ">
-        <span className="absolute top-1 right-1 z-41"> #3</span>
-      </div>
+    <div className=" cursor-pointer relative w-[200px] h-[315px] min-w-[200px] min-h-[315px] shadow-[0px_0px_6px_rgba(0,0,0,0.2)] rounded-lg p-5 m-1 mt-3 bg-white transition-transform duration-300 ease-in-out hover:-translate-y-2 flex flex-col gap-1">
+      {!!trendingCount && (
+        <div className="absolute top-0 right-0 z-40  bg-black text-white text-base font-semibold p-6 clip-triangle rounded-tr-lg ">
+          <span className="absolute top-1 right-1 z-41"> #{trendingCount}</span>
+        </div>
+      )}
 
       <div className="absolute top-4 left-4 text-white text-[10px] flex flex-col gap-2 uppercase w-fit z-40">
-        <div>
-          <span className="p-0.5 px-1 bg-[#000] rounded">New</span>
-        </div>
-        <div>
-          <span className="p-0.5 px-1 bg-[#000] rounded">Limited edition</span>
-        </div>
-        <div>
-          <span className="p-0.5 px-1 bg-[#000] rounded">Online only</span>
-        </div>
+        {isNew && (
+          <div>
+            <span className="p-0.5 px-1 bg-[#000] rounded">New</span>
+          </div>
+        )}
+        {isLimited && (
+          <div>
+            <span className="p-0.5 px-1 bg-[#000] rounded">
+              Limited edition
+            </span>
+          </div>
+        )}
+        {isOnlineOnly && (
+          <div>
+            <span className="p-0.5 px-1 bg-[#000] rounded">Online only</span>
+          </div>
+        )}
       </div>
       <div className="relative group">
         <img
-          src="https://www.sephora.com/productimages/sku/s2842441-main-zoom.jpg?imwidth=332"
+          // src="https://www.sephora.com/productimages/sku/s2842441-main-zoom.jpg?imwidth=332"
+          src={img}
           alt="Product"
           className="w-full h-[160px] object-contain"
         />
@@ -33,14 +66,16 @@ const ProductCard: React.FC = () => {
           Quick Look
         </Button>
       </div>
-      <span className="text-[12px] font-bold">Fenty Beauty</span>
-      <span className="text-[14px] ">
-        Pro Filt'r Soft Matte Powder Foundation
-      </span>
-      <span className="text-[14px] font-bold">$36.00</span>
+      <span className="text-[12px] font-bold">{brand}</span>
+      <span className="text-[14px] ">{name}</span>
+      <span className="text-[14px] font-bold">${price}</span>
       <div className="flex items-center gap-2">
-        <Rate allowHalf defaultValue={2.5} className="text-black text-[15px]" />
-        <span>2k</span>
+        <Rate
+          allowHalf
+          defaultValue={rating}
+          className="text-black text-[15px]"
+        />
+        <span>{ratingCount}k</span>
       </div>
     </div>
   );

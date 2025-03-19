@@ -63,7 +63,7 @@ const Carousel: React.FC<CarouselProps> = ({
 
       <div
         ref={scrollRef}
-        className="flex gap-5 overflow-x-auto scroll-smooth no-scrollbar"
+        className="flex gap-0 overflow-x-auto scroll-smooth no-scrollbar"
       >
         {children}
       </div>
@@ -82,19 +82,23 @@ const Carousel: React.FC<CarouselProps> = ({
 
 export { Carousel };
 
-const CarouselCard: React.FC<{ url: string }> = ({ url }) => {
+const CarouselCard: React.FC<{ url: string; bg: string; color: string }> = ({
+  url,
+  bg,
+  color,
+}) => {
   return (
-    <div className="w-[540px] rounded-lg flex-shrink-0">
+    <div className="w-[540px] rounded-lg flex-shrink-0 m-3">
       <img
         src={url}
         alt="Carousel"
         className="w-[540px] h-[300px] rounded-t-lg"
       />
-      <div className="p-5 bg-black text-white rounded-b-lg">
-        <h3>New &amp; Clean at Sephora</h3>
-        <p>Indulge in buttery, silky, juicy makeup.</p>
+      <div className={`p-5 ${bg} ${color} rounded-b-lg`}>
+        <h3 className="font-bold text-[16px]">New &amp; Clean at Sephora</h3>
+        <p className="font-semibold">Indulge in buttery, silky, juicy makeup.</p>
         <p>
-          <b>SHOP NOW ▸</b>
+          <b className="cursor-pointer">SHOP NOW ▸</b>
         </p>
       </div>
     </div>
@@ -102,17 +106,38 @@ const CarouselCard: React.FC<{ url: string }> = ({ url }) => {
 };
 
 const demoData = [
-  "https://www.sephora.com/contentimages/2025-feb-mu-texture-story-site-desktop-home-page-rwd-hero-banner-clean-1200x800-us-2946.jpg?imwidth=1090",
-  "https://www.sephora.com/contentimages/2025-03-11-slotting-just-arrived-v3-site-rwd-home-page-hero-banner-english-AMIKA-US-handoff_01.jpg?imwidth=1090",
-  "https://www.sephora.com/contentimages/2025-3-16-tower-28-getset-blur-set-matte-powder-blush-site-desktop-home-page-rwd-hero-banner-1200x800-en-us-can.jpg?imwidth=1090",
-  "https://www.sephora.com/contentimages/2025-3-15-kayali-fleur-majesty-rose-royale-eau-de-parfum-site-desktop-home-page-rwd-hero-banner-1200x800-en-us-can.jpg?imwidth=1090",
+  {
+    img: "https://www.sephora.com/contentimages/2025-feb-mu-texture-story-site-desktop-home-page-rwd-hero-banner-clean-1200x800-us-2946.jpg?imwidth=1090",
+    bg: "bg-[#fdd559]",
+    color: "text-[#000]",
+  },
+  {
+    bg: "bg-[#bddcee]",
+    color: "text-[#000]",
+    img: "https://www.sephora.com/contentimages/2025-03-11-slotting-just-arrived-v3-site-rwd-home-page-hero-banner-english-AMIKA-US-handoff_01.jpg?imwidth=1090",
+  },
+  {
+    bg: "bg-[#305b62]",
+    color: "text-[#fff]",
+    img: "https://www.sephora.com/contentimages/2025-3-16-tower-28-getset-blur-set-matte-powder-blush-site-desktop-home-page-rwd-hero-banner-1200x800-en-us-can.jpg?imwidth=1090",
+  },
+  {
+    bg: "bg-[#182981]",
+    color: "text-[#fff]",
+    img: "https://www.sephora.com/contentimages/2025-3-15-kayali-fleur-majesty-rose-royale-eau-de-parfum-site-desktop-home-page-rwd-hero-banner-1200x800-en-us-can.jpg?imwidth=1090",
+  },
 ];
 
 const HomeCarousel: React.FC = () => {
   return (
     <Carousel>
-      {demoData.map((url) => (
-        <CarouselCard key={url} url={url} />
+      {demoData.map((data) => (
+        <CarouselCard
+          key={data.img}
+          url={data.img}
+          color={data.color}
+          bg={data.bg}
+        />
       ))}
     </Carousel>
   );
